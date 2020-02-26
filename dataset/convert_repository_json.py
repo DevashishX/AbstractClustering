@@ -60,23 +60,38 @@ class AbstractExtracter():
 
                 line = fd.readline()        
         self.df = self.df.append(dataarray, ignore_index=True)
+        # print(type(self.df.iloc[0, 0]))
+        # print(type(self.df.iloc[0, 1]))
+        # print(type(self.df.iloc[0, 2]))
 
     def FilesCleaner(self):
         for filename in self.filenames:
             self.JsonCleaner(filename)
-            csvname = filename.rsplit(".")[0] + ".csv"
-            self.df.to_csv(csvname, index=False)
+            # csvname = filename.rsplit(".")[0] + ".csv"
+
+            # self.df.to_csv(csvname, index=False)
+            csvname =  "new_" + filename.rsplit(".")[0] + ".pkl"
+
+            # self.df.to_json(csvname, orient="split")
+            self.df.to_pickle(csvname)
+
             # csvname = filename.rsplit(".")[0] + ".pkl"
             # self.df.to_pickle(csvname)
         pass
 
 
 if __name__ == "__main__":
-    filenames = ["repository_metadata_2_2013-03-18.json"]
-    op = "repository_metadata_2_2013-03-18.csv"
+    filenames = ["repository_metadata_9_2013-03-18.json"]
+    op = "repository_metadata_9_2013-03-18.csv"
     pre = AbstractPreprocessor()
     AbsExt = AbstractExtracter(filenames,pre)
     AbsExt.FilesCleaner()
-    # df = pd.read_csv(op)
-    # print(df)
+    csvname =  "new_" + filenames[0].rsplit(".")[0] + ".pkl"
+    # df = pd.read_json(csvname, orient="split")
+    df = pd.read_pickle(csvname)
+
+    print(type(df.iloc[0, 0]))
+    print(type(df.iloc[0, 1]))
+    print(type(df.iloc[0, 2]))
+    print(df.head())
     pass
