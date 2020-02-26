@@ -5,7 +5,7 @@ def gen_mean(vals, p = 3):
     return np.power(
         np.mean(
             np.power(
-                np.array(vals, dtype=np.complex),
+                np.array(vals, dtype=np.float64),
                 p),
             axis=0),
         1 / p
@@ -23,7 +23,7 @@ def get_pmeans(wordembeddings):
     pmean_embedding.append(np.min(wordembeddings, axis= 0))
     # pmean_embedding.append(gen_mean(wordembeddings,0.5))
     pmean_embedding.append(gen_mean(wordembeddings,2))
-    pmean_embedding.append(gen_mean(wordembeddings,3))
+    pmean_embedding.append(gen_mean(wordembeddings,4))
 
     # pmean_embedding.append(gen_mean(wordembeddings,4))
     # pmean_embedding.append(gen_mean(wordembeddings,5))

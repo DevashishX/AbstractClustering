@@ -33,6 +33,7 @@ class GloveVectors(object):
             word = splitLine[0]
             embedding = np.array([float(val) for val in splitLine[1:]], dtype=np.float64)
             model[word] = embedding
+        self.unk = np.mean(list(model.values()), axis=0)
         print("Done! Model Loaded. Vector Size is "+str(len(model["hello"])))
 
         f.close()
@@ -40,7 +41,7 @@ class GloveVectors(object):
 
     def get_embeddings(self, words):
         # return [self.model[x] for x in words]
-        return [self.model[x] for x in words if x in self.model]
+        return [self.model[x] if x in self.model else self.unk for x in words]
 
 
 
