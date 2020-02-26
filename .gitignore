@@ -130,3 +130,5 @@ dmypy.json
 
 .vscode/
 .directory
+glove.6B.50d.txt
+./dataset/glove.6B.50d.txt

@@ -31,7 +31,7 @@ class GloveVectors(object):
         for line in f:
             splitLine = line.split()
             word = splitLine[0]
-            embedding = np.array([float(val) for val in splitLine[1:]])
+            embedding = np.array([float(val) for val in splitLine[1:]], dtype=np.float64)
             model[word] = embedding
         print("Done! Model Loaded. Vector Size is "+str(len(model["hello"])))
 
