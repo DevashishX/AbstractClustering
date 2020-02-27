@@ -9,7 +9,7 @@ class Word2Vec(object):
         # add testing code here
         print("Loading Model")
         self.model = KeyedVectors.load_word2vec_format("enter filename here")
-        print("Done! Model Loaded. Vector Size is "+len(model["hello"]))
+        print("Done! Model Loaded. Vector Size is "+len(self.model["hello"]))
 
 
     def get_embeddings(self, words):
@@ -52,7 +52,7 @@ class FastTextVectors(object):
         # add testing code here
         print("Loading Model")
         self.model = FastText.load_fasttext_format("enter filename here")
-        print("Done! Model Loaded. Vector Size is "+len(model["hello"]))
+        print("Done! Model Loaded. Vector Size is "+len(self.model["hello"]))
 
     def get_embeddings(self, words):
         # return [self.model[x] for x in words]
