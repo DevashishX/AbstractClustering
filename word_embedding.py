@@ -51,7 +51,10 @@ class FastTextVectors(object):
     def __init__(self, filename):
         # add testing code here
         print("Loading Model")
-        self.model = FastText.load_fasttext_format(filename)
+        if filename[-3:] == "vec":
+            self.model = FastText.load_word2vec_format(filename)
+        else:
+            self.model = FastText.load_fasttext_format(filename)
         print("Done! Model Loaded. Vector Size is "+str(len(self.model["hello"])))
 
     def get_embeddings(self, words):
