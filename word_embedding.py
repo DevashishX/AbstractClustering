@@ -5,15 +5,15 @@ import numpy as np
 class Word2Vec(object):
     """docstring for Word2Vec."""
 
-    def __init__(self):
+    def __init__(self, filename):
         # add testing code here
         print("Loading Model")
-        self.model = KeyedVectors.load_word2vec_format("enter filename here")
-        print("Done! Model Loaded. Vector Size is "+len(self.model["hello"]))
+        self.model = KeyedVectors.load_word2vec_format(filename)
+        print("Done! Model Loaded. Vector Size is ", len(self.model["hello"]))
 
 
     def get_embeddings(self, words):
-        return [self.model[x] for x in words if x in self.model]
+        return [self.model[x] for x in words if x in self.model.vocab]
 
 
 
@@ -48,13 +48,13 @@ class GloveVectors(object):
 class FastTextVectors(object):
     """docstring for FastTextVectors."""
 
-    def __init__(self):
+    def __init__(self, filename):
         # add testing code here
         print("Loading Model")
-        self.model = FastText.load_fasttext_format("enter filename here")
-        print("Done! Model Loaded. Vector Size is "+len(self.model["hello"]))
+        self.model = FastText.load_fasttext_format(filename)
+        print("Done! Model Loaded. Vector Size is "+str(len(self.model["hello"])))
 
     def get_embeddings(self, words):
         # return [self.model[x] for x in words]
-        return [self.model[x] for x in words if x in self.model]
+        return [self.model[x] for x in words if x in self.model.vocab]
         
