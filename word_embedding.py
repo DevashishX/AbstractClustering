@@ -9,6 +9,7 @@ class Word2Vec(object):
         # add testing code here
         print("Loading Model")
         self.model = KeyedVectors.load_word2vec_format(filename)
+        self.unk = np.mean(list(self.model.values()), axis=0)
         print("Done! Model Loaded. Vector Size is ", len(self.model["hello"]))
 
 
