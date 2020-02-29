@@ -52,7 +52,7 @@ class FastTextVectors(object):
         # add testing code here
         print("Loading Model")
         if filename[-3:] == "vec":
-            self.model = FastText.load_word2vec_format(filename)
+            self.model = KeyedVectors.load_word2vec_format(filename)
         else:
             self.model = FastText.load_fasttext_format(filename)
         print("Done! Model Loaded. Vector Size is "+str(len(self.model["hello"])))
