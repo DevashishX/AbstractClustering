@@ -4,12 +4,14 @@ import sqlite3
 class PaperDB():
     """
     Class to connect to sqlite3 database of research papers
+    database schema is int:id, str:title, str:abstract
+    here id is the the unique id from the research paper
+    database and not the index
     """
     def __init__(self, name="papers.db"):
         """
-        name is the name of papers databes to connect to
+        name is the name of papers database to connect to
         """
-
         self.name = name
         self.conn = sqlite3.connect(self.name)
         pass
@@ -25,8 +27,8 @@ class PaperDB():
             return None
         querystring = "select * from papers where id=?"
         answers = []
-        for id in ids:
-            ans = self.conn.execute(querystring, (id, ))
+        for ID in ids:
+            ans = self.conn.execute(querystring, (ID, ))
             ans = [r for r in ans]
             ans = list(ans[0])
             ans = ans[1:len(ans)]
