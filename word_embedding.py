@@ -13,7 +13,10 @@ class Word2Vec(object):
 
 
     def get_embeddings(self, words):
-        return [self.model[x] for x in words if x in self.model.vocab]
+        ret = [self.model[x] for x in words if x in self.model.vocab]
+        if len(ret) == 0:
+            return [self.model["unk"]]
+        return ret
 
 
 
@@ -41,7 +44,10 @@ class GloveVectors(object):
 
     def get_embeddings(self, words):
         # return [self.model[x] for x in words]
-        return [self.model[x] if x in self.model else self.unk for x in words]
+        ret = [self.model[x] if x in self.model else self.unk for x in words]
+        if len(ret) == 0:
+            ret = [self.unk]
+        return ret
 
 
 
@@ -58,6 +64,7 @@ class FastTextVectors(object):
         print("Done! Model Loaded. Vector Size is "+str(len(self.model["hello"])))
 
     def get_embeddings(self, words):
-        # return [self.model[x] for x in words]
-        return [self.model[x] for x in words if x in self.model.vocab]
-        
+        ret = [self.model[x] for x in words if x in self.model.vocab]
+        if len(ret) == 0:
+            return [self.model["unk"]]
+        return ret        
